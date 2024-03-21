@@ -8,6 +8,13 @@ jobs:
   commands_job:
     runs-on: [production,linux]
     steps:
+      - name: Verify Proxy Settings
+        run: |
+          echo "HTTPS Proxy: $https_proxy"
+          echo "HTTP Proxy: $http_proxy"
+          echo "No Proxy: $no_proxy"
+          curl -v https://httpbin.org/ip
+                
       - name: Set environment variable with "key" as "foo" and "value" as "bar" 
         run: echo "foo=bar" >> $GITHUB_ENV
 
